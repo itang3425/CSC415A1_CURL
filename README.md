@@ -1,14 +1,32 @@
 # CURL: Contrastive Unsupervised Representation Learning for Sample-Efficient Reinforcement Learning
 
-This repository is the official implementation of [CURL](https://mishalaskin.github.io/curl/) for the DeepMind control experiments. Atari experiments were done in a separate codebase available [here](https://github.com/aravindsrinivas/curl_rainbow). Our implementation of SAC is based on [SAC+AE](https://github.com/denisyarats/pytorch_sac_ae) by Denis Yarats. 
+This repository is a fork of [the official implementation of CURL](https://github.com/MishaLaskin/curl). This repo used different package versions than the original.
 
 ## Installation 
 
-All of the dependencies are in the `conda_env.yml` file. They can be installed manually or with the following command:
+Open colab, run the following commands in different cells:
 
 ```
-conda env create -f conda_env.yml
+!mamba env create -f /content/drive/MyDrive/curl_new_env_export.yml
+
+!/usr/local/envs/curl_new/bin/pip install "pip<24" "setuptools<65" "wheel<0.38"
+
+!/usr/local/envs/curl_new/bin/pip install gym==0.19.0 --no-build-isolation
+
+!/usr/local/envs/curl_new/bin/pip install git+https://github.com/1nadequacy/dmc2gym.git
+
+!/usr/local/envs/curl_new/bin/python -m pip install -r /content/drive/MyDrive/CURL_pip_reqs.txt
+
+!apt-get update -qq
+!apt-get install -y -qq libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa mesa-utils
+
+import os
+os.environ["MUJOCO_GL"] = "egl"           # headless GPU rendering
+os.environ["PYOPENGL_PLATFORM"] = "egl"   # helps PyOpenGL pick EGL
+
+!mkdir /content/drive/MyDrive/curl_runs_detached
 ```
+An example colab notebook has been included for reference.
 
 ## Instructions
 To train a CURL agent on the `cartpole swingup` task from image-based observations run `bash script/run.sh` from the root of this directory. The `run.sh` file contains the following command, which you can modify to try different environments / hyperparamters.
