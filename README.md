@@ -1,6 +1,7 @@
 # CURL: Contrastive Unsupervised Representation Learning for Sample-Efficient Reinforcement Learning
 
-This repository is a fork of [the official implementation of CURL](https://github.com/MishaLaskin/curl). This repo used different package versions than the original.
+This repository is a fork of [the official implementation of CURL](https://github.com/MishaLaskin/curl). This repo uses different package versions than the original.
+An example Colab notebook is included for reference.
 
 ## Installation 
 
@@ -26,7 +27,6 @@ os.environ["PYOPENGL_PLATFORM"] = "egl"   # helps PyOpenGL pick EGL
 
 !mkdir /content/drive/MyDrive/curl_runs_detached
 ```
-An example colab notebook has been included for reference.
 
 ## Instructions
 To train a CURL agent on the `cartpole swingup` task from image-based observations run `bash script/run.sh` from the root of this directory. The `run.sh` file contains the following command, which you can modify to try different environments / hyperparamters.
@@ -36,11 +36,14 @@ CUDA_VISIBLE_DEVICES=0 python train.py \
     --task_name swingup \
     --encoder_type pixel \
     --action_repeat 8 \
+    --save_model \
     --save_tb --pre_transform_image_size 100 --image_size 84 \
     --work_dir ./tmp \
     --agent curl_sac --frame_stack 3 \
     --seed -1 --critic_lr 1e-3 --actor_lr 1e-3 --eval_freq 10000 --batch_size 128 --num_train_steps 1000000 
 ```
+
+To run the ablation test, add --detach_encoder flag.
 
 In your console, you should see printouts that look like:
 
