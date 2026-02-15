@@ -1,11 +1,11 @@
 # CURL: Contrastive Unsupervised Representation Learning for Sample-Efficient Reinforcement Learning
 
-This repository is a fork of [the official implementation of CURL](https://github.com/MishaLaskin/curl). This repo uses different package versions than the original.
+This repository is a fork of [the official implementation of CURL](https://github.com/MishaLaskin/curl). This repo uses different package versions (see curl_new_env_export.yml) than the original (see conda_env.yml).
 An example Colab notebook is included for reference.
 
 ## Installation 
 
-Open colab, run the following commands in different cells:
+Open colab, run the following commands:
 
 ```
 !mamba env create -f /content/drive/MyDrive/curl_new_env_export.yml
