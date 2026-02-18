@@ -8,7 +8,10 @@ An example Colab notebook is included for reference.
 Open colab, run the following commands:
 
 ```
-!mamba env create -f /content/drive/MyDrive/curl_new_env_export.yml
+git clone https://github.com/itang3425/CSC415A1_CURL.git
+cd CSC415A1_CURL
+
+!mamba env create -f curl_new_env_export.yml
 
 !/usr/local/envs/curl_new/bin/pip install "pip<24" "setuptools<65" "wheel<0.38"
 
@@ -16,7 +19,7 @@ Open colab, run the following commands:
 
 !/usr/local/envs/curl_new/bin/pip install git+https://github.com/1nadequacy/dmc2gym.git
 
-!/usr/local/envs/curl_new/bin/python -m pip install -r /content/drive/MyDrive/CURL_pip_reqs.txt
+!/usr/local/envs/curl_new/bin/python -m pip install -r CURL_pip_reqs.txt
 
 !apt-get update -qq
 !apt-get install -y -qq libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa mesa-utils
@@ -25,7 +28,7 @@ import os
 os.environ["MUJOCO_GL"] = "egl"           # headless GPU rendering
 os.environ["PYOPENGL_PLATFORM"] = "egl"   # helps PyOpenGL pick EGL
 
-!mkdir /content/drive/MyDrive/curl_runs_detached
+!mkdir curl_runs
 ```
 
 ## Instructions
@@ -38,7 +41,7 @@ CUDA_VISIBLE_DEVICES=0 python train.py \
     --action_repeat 8 \
     --save_model \
     --save_tb --pre_transform_image_size 100 --image_size 84 \
-    --work_dir ./tmp \
+    --work_dir ./curl_runs \
     --agent curl_sac --frame_stack 3 \
     --seed -1 --critic_lr 1e-3 --actor_lr 1e-3 --eval_freq 10000 --batch_size 128 --num_train_steps 1000000 
 ```
